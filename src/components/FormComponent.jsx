@@ -1,38 +1,10 @@
 import React, { useState } from 'react';
-import * as Papa from 'papaparse';
 
 function FormComponent() {
     const [csvData, setCsvData] = useState(null);
     const [results, setResults] = useState([]);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        if (!csvData) {
-            console.error('No CSV file selected.');
-            return;
-        }
-
-        // Parse CSV data
-        const parsedData = Papa.parse(csvData, { header: true });
-        const rows = parsedData.data;
-        console.log(rows)
-        console.log(rows[9].__parsed_extra[2])
-
-        // Extract data from D column starting from the 9th row
-        const columnData = [];
-        for (let i = 7; i < rows.length; i++) {
-            const rowData = rows[i]?.__parsed_extra?.[2];
-            if (rowData) {
-                columnData.push(rowData);
-            }
-        }
-
-        // Set the results
-        setResults(columnData);
-        console.log(columnData);
-    }
-
+    // First Handle the filechange and set the CSV data
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
@@ -43,6 +15,44 @@ function FormComponent() {
             reader.readAsText(file);
         }
     };
+
+    const parseCSV = (csvText) => {
+        console.log("I am csvText ",csvText);
+        const rows = csvText.split('\n');
+        console.log("I am rows ",rows);
+        const data = rows.map(row => row.split(','));
+        console.log("I am data ",data);
+        return data;
+    }
+
+    const extractColumnData = (data, columnName) => {
+        const columnData = [];
+        for (let i = 8; i < data.length; i++) {
+            const rowData = data[i][columnName.charCodeAt(0) - 'A'.charCodeAt(0)];
+            if(rowData) {
+                columnData.push(rowData);
+            }
+        }
+        return columnData;
+    }
+
+    // Second handle the Submit
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (!csvData) {
+            console.error('No CSV file selected.');
+            return;
+        }
+
+        // Parse CSV data
+        const parsedData = parseCSV(csvData);
+        const columnData = extractColumnData(parsedData, 'D');
+
+        // Set the results
+        setResults(columnData);
+        console.log(columnData);
+    }
 
     return (
         <div className="max-w-md mx-auto mt-8">
