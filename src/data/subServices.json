@@ -1,0 +1,69 @@
+{
+    "Amazon EC2": {
+        "Subservices": [
+            "Amazon VPC",
+            "Subnet",
+            "EBS",
+            "Security Group",
+            "Instance Types"
+        ]
+    },
+    "Application Load Balancer": {
+        "Subservices": [
+            "Amazon VPC",
+            "Subnet",
+            "Target Groups",
+            "Listeners and Rules",
+            "Certificates",
+            "Health Checks",
+            "Security Groups"
+        ]
+    },
+    "Amazon VPC": {
+        "Subservices": [
+            "Subnets",
+            "Route Tables",
+            "Internet Gateways",
+            "Network ACLs",
+            "NAT Gateways",
+            "Security Groups",
+            "Elastic IP Addresses"
+        ]
+    },
+    "Amazon RDS for MySQL": {
+        "Subservices": [
+            "Amazon VPC",
+            "Subnet",
+            "Database Engines",
+            "Instance Types",
+            "Multi-AZ Deployment",
+            "Read Replicas",
+            "Parameter Groups"
+        ]
+    },
+    "S3 Standard": {
+        "Subservices": [
+            "Storage Classes",
+            "Lifecycle Rules",
+            "Encryption Options",
+            "Replication",
+            "Event Notifications"
+        ]
+    },
+    "Data Transfer": {
+        "Subservices": [
+            "Data Transfer Services",
+            "AWS Direct Connect",
+            "VPN Connections"
+        ]
+    },
+    "Network Address Translation (NAT) Gateway": {
+        "Subservices": [
+            "Amazon VPC",
+            "Amazon EC2",
+            "Subnet",
+            "Route table",
+            "Security Groups"
+        ]
+    }
+}

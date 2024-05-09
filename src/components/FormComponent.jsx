@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SubServicesList from './SubServicesList';
 
 function FormComponent() {
     const [csvData, setCsvData] = useState(null);
@@ -71,6 +72,7 @@ function FormComponent() {
                     className="w-full bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600 focus:outline-none focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
                 >Submit</button>
             </form>
+
             {results.length > 0 && (
                 <div className="mt-4">
                     <h2 className="text-lg font-semibold mb-2">Results:</h2>
@@ -81,6 +83,8 @@ function FormComponent() {
                     </ul>
                 </div>
             )}
+
+            <SubServicesList services={results} />
         </div>
     )
 }
